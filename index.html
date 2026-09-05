@@ -461,7 +461,7 @@ class Component extends DCLogic {
   }
   constructor(props) {
     super(props);
-    this.state = { tab: props.defaultTab === "Industry Associations" ? "industry" : "hospital", expanded: false, openTopics: {}, mobileTopicOpen: null };
+    this.state = { tab: props.defaultTab === "Industry Associations" ? "industry" : "hospital", expanded: false, openTopics: {}, mobileTopicOpen: 0 };
   }
   mapTopics(list) {
     return list.map(t => {
