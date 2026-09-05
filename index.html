@@ -57,8 +57,8 @@
     section[data-reveal] { padding-left: 22px !important; padding-right: 22px !important; }
     #topics { padding: 64px 22px 24px !important; }
     #topics article { min-height: 0 !important; }
-    #topicFeature { padding: 26px !important; grid-template-columns: 1fr !important; gap: 22px !important; }
-    #topicTabs { grid-template-columns: repeat(2,1fr) !important; }
+    #topicsDesktop { display: none !important; }
+    #topicsMobile { display: block !important; }
     #b2b { padding-bottom: 0 !important; }
     #b2b > div { padding: 0 22px !important; }
     #b2bGrid { grid-template-columns: 1fr !important; gap: 12px !important; }
@@ -128,31 +128,55 @@
       
     </div>
 
-    <article data-reveal="" style="position:relative;border-radius:8px;overflow:hidden;background:#0D2135;border:1px solid rgba(255,255,255,0.08);min-height:560px;display:flex;align-items:flex-end">
-      <img src="uploads/20241121k3xpas.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o1 }};transition:opacity 0.8s ease">
-      <img src="uploads/digital_health.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o2 }};transition:opacity 0.8s ease">
-      <img src="uploads/medical_devices.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o3 }};transition:opacity 0.8s ease">
-      <img src="uploads/precision_diagnostics.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o4 }};transition:opacity 0.8s ease">
-      <img src="uploads/2024112157wz2t.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o5 }};transition:opacity 0.8s ease">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,31,0.30) 0%,rgba(6,18,31,0.72) 52%,rgba(6,18,31,0.96) 100%)"></div>
-      <div id="topicFeature" style="position:relative;width:100%;padding:56px;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:end">
-        <sc-for list="{{ activeTopic }}" as="t">
-          <div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#3FB6E3;margin-bottom:18px">{{ t.no }} / 05</div>
-            <h3 style="margin:0;font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(32px,3.6vw,54px);line-height:1.05;letter-spacing:-0.035em;color:#EAF1F7">{{ t.title }}</h3>
-          </div>
-          <p style="margin:0;font-size:17px;line-height:1.75;color:#D5E1EB;text-wrap:pretty">{{ t.text }}</p>
+    <div id="topicsDesktop">
+      <article data-reveal="" style="position:relative;border-radius:8px;overflow:hidden;background:#0D2135;border:1px solid rgba(255,255,255,0.08);min-height:560px;display:flex;align-items:flex-end">
+        <img src="uploads/20241121k3xpas.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o1 }};transition:opacity 0.8s ease">
+        <img src="uploads/digital_health.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o2 }};transition:opacity 0.8s ease">
+        <img src="uploads/medical_devices.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o3 }};transition:opacity 0.8s ease">
+        <img src="uploads/precision_diagnostics.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o4 }};transition:opacity 0.8s ease">
+        <img src="uploads/2024112157wz2t.jpg" alt="Topic in focus" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ o5 }};transition:opacity 0.8s ease">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,31,0.30) 0%,rgba(6,18,31,0.72) 52%,rgba(6,18,31,0.96) 100%)"></div>
+        <div id="topicFeature" style="position:relative;width:100%;padding:56px;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:end">
+          <sc-for list="{{ activeTopic }}" as="t">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#3FB6E3;margin-bottom:18px">{{ t.no }} / 05</div>
+              <h3 style="margin:0;font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(32px,3.6vw,54px);line-height:1.05;letter-spacing:-0.035em;color:#EAF1F7">{{ t.title }}</h3>
+            </div>
+            <p style="margin:0;font-size:17px;line-height:1.75;color:#D5E1EB;text-wrap:pretty">{{ t.text }}</p>
+          </sc-for>
+        </div>
+      </article>
+
+      <div id="topicTabs" style="display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; margin-top: 0px; background: rgba(255,255,255,0.12)">
+        <sc-for list="{{ topicRows }}" as="t" hint-placeholder-count="5">
+          <button type="button" onClick="{{ t.onClick }}" style="position:relative;display:block;width:100%;text-align:left;cursor:pointer;background:#06121F;border:0;padding:22px 18px 24px;font-family:Manrope,sans-serif" style-hover="background:rgba(255,255,255,0.05)">
+            <span style="position:absolute;top:0;left:0;height:2px;width:{{ t.barWidth }};background:#3FB6E3;transition:width 0.4s linear"></span>
+            <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:{{ t.numColor }}">{{ t.no }}</span>
+            <span style="display:block;margin-top:12px;font-family:Archivo,sans-serif;font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-0.02em;color:{{ t.titleColor }}">{{ t.title }}</span>
+          </button>
         </sc-for>
       </div>
-    </article>
+    </div>
 
-    <div id="topicTabs" style="display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; margin-top: 0px; background: rgba(255,255,255,0.12)">
-      <sc-for list="{{ topicRows }}" as="t" hint-placeholder-count="5">
-        <button type="button" onClick="{{ t.onClick }}" style="position:relative;display:block;width:100%;text-align:left;cursor:pointer;background:#06121F;border:0;padding:22px 18px 24px;font-family:Manrope,sans-serif" style-hover="background:rgba(255,255,255,0.05)">
-          <span style="position:absolute;top:0;left:0;height:2px;width:{{ t.barWidth }};background:#3FB6E3;transition:width 0.4s linear"></span>
-          <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:{{ t.numColor }}">{{ t.no }}</span>
-          <span style="display:block;margin-top:12px;font-family:Archivo,sans-serif;font-weight:600;font-size:17px;line-height:1.2;letter-spacing:-0.02em;color:{{ t.titleColor }}">{{ t.title }}</span>
-        </button>
+    <div id="topicsMobile" style="display:none">
+      <sc-for list="{{ mobileTopics }}" as="t" hint-placeholder-count="5">
+        <div style="border-bottom:1px solid rgba(255,255,255,0.10)">
+          <button type="button" onClick="{{ t.onToggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;cursor:pointer;background:transparent;border:0;padding:18px 2px;font-family:Manrope,sans-serif">
+            <span style="display:flex;align-items:baseline;gap:14px;min-width:0">
+              <span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:{{ t.numColor }}">{{ t.no }}</span>
+              <span style="font-family:Archivo,sans-serif;font-weight:600;font-size:16px;line-height:1.2;letter-spacing:-0.02em;color:#EAF1F7">{{ t.title }}</span>
+            </span>
+            <span style="flex-shrink:0;font-size:18px;line-height:1;color:#6E8497;transform:{{ t.chevronRotate }};transition:transform 0.3s ease">⌄</span>
+          </button>
+          <div style="overflow:hidden;max-height:{{ t.maxHeight }};transition:max-height 0.35s ease">
+            <div style="padding:0 2px 22px">
+              <div style="border-radius:8px;overflow:hidden;margin-bottom:14px;aspect-ratio:16/10;background:#0D2135">
+                <img src="{{ t.img }}" alt="{{ t.title }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">
+              </div>
+              <p style="margin:0;font-size:14px;line-height:1.7;color:#B7C6D3;text-wrap:pretty">{{ t.text }}</p>
+            </div>
+          </div>
+        </div>
       </sc-for>
     </div>
 
@@ -437,7 +461,7 @@ class Component extends DCLogic {
   }
   constructor(props) {
     super(props);
-    this.state = { tab: props.defaultTab === "Industry Associations" ? "industry" : "hospital", expanded: false, openTopics: {} };
+    this.state = { tab: props.defaultTab === "Industry Associations" ? "industry" : "hospital", expanded: false, openTopics: {}, mobileTopicOpen: null };
   }
   mapTopics(list) {
     return list.map(t => {
@@ -509,6 +533,15 @@ class Component extends DCLogic {
         });
       }),
       activeTopic: [TOPICS[this.state.activeTopic || 0]],
+      mobileTopics: TOPICS.map((t, i) => {
+        const open = this.state.mobileTopicOpen === i;
+        return Object.assign({}, t, {
+          numColor: open ? "#3FB6E3" : "#6E8497",
+          chevronRotate: open ? "rotate(180deg)" : "rotate(0deg)",
+          maxHeight: open ? "800px" : "0px",
+          onToggle: () => this.setState(s => ({ mobileTopicOpen: s.mobileTopicOpen === i ? null : i }))
+        });
+      }),
       hb1: (this.state.heroIndex || 0) === 0 ? 0.55 : 0,
       hb2: this.state.heroIndex === 1 ? 0.55 : 0,
       hb3: this.state.heroIndex === 2 ? 0.55 : 0,
