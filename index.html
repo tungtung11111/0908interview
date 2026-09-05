@@ -162,9 +162,9 @@
     <div style="position:absolute;inset:0;background:radial-gradient(120% 100% at 12% 50%,rgba(6,18,31,0.95) 0%,rgba(6,18,31,0.78) 42%,rgba(6,18,31,0.25) 100%)"></div>
     <div style="position:relative;max-width:1240px;margin:0 auto;width:100%;padding:64px 48px">
       <div data-reveal="" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.22em;color:#3FB6E3;margin-bottom:20px">GLOBAL B2B CONNECT HUB</div>
-      <h2 style="margin:0;max-width:16em;font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,46px);line-height:1.1;letter-spacing:-0.03em">Join B2B Connect Hub</h2>
-      <p style="margin:24px 0 0;max-width:36em;font-size:16px;line-height:1.75;color:#B7C6D3;text-wrap:pretty">From hospital construction and medical devices to biotech, diagnostics and digital care — Asia's healthcare supply chain, its buyers and its policy makers gather in one hall in Taipei.</p>
-      <a href="#register" style="display:inline-flex;align-items:center;height:52px;padding:0 30px;margin-top:34px;border-radius:8px;background:#E7B24B;color:#06121F;font-weight:600;font-size:15px;animation:ctaPulse 2.4s ease-in-out infinite" style-hover="background:#F3C979">Register to Visit</a>
+      <h2 data-reveal="" style="margin:0;max-width:16em;font-family:Archivo,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,46px);line-height:1.1;letter-spacing:-0.03em">Join B2B Connect Hub</h2>
+      <p data-reveal="" style="margin:24px 0 0;max-width:36em;font-size:16px;line-height:1.75;color:#B7C6D3;text-wrap:pretty">From hospital construction and medical devices to biotech, diagnostics and digital care — Asia's healthcare supply chain, its buyers and its policy makers gather in one hall in Taipei.</p>
+      <a data-reveal="" href="#register" style="display:inline-flex;align-items:center;height:52px;padding:0 30px;margin-top:34px;border-radius:8px;background:#E7B24B;color:#06121F;font-weight:600;font-size:15px;animation:ctaPulse 2.4s ease-in-out infinite" style-hover="background:#F3C979">Register to Visit</a>
     </div>
   </section>
 
@@ -234,7 +234,7 @@
     </div>
   </section>
 
-  <section id="register" data-reveal="" style="position:relative;padding:110px 48px 90px">
+  <section id="register" data-reveal="" style="position: relative; padding: 110px 48px 90px; padding-top: ０">
     <video src="uploads/12487099_960_540_25fps-9289de08.mp4" autoPlay="{{ true }}" muted="{{ true }}" ref="{{ outroVideo }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="position:absolute;top:-320px;left:0;right:0;bottom:0;width:100%;height:auto;min-height:calc(100% + 320px);object-fit:cover;opacity:0.26;filter:saturate(0.5) contrast(1.05);pointer-events:none;mask-image:radial-gradient(78% 64% at 50% 66%,rgba(0,0,0,1) 0%,rgba(0,0,0,0.5) 54%,rgba(0,0,0,0) 100%);-webkit-mask-image:radial-gradient(78% 64% at 50% 66%,rgba(0,0,0,1) 0%,rgba(0,0,0,0.5) 54%,rgba(0,0,0,0) 100%)"></video>
     
     <div id="registerGrid" style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
@@ -373,7 +373,7 @@ class Component extends DCLogic {
       nodes.forEach(n => {
         if (!n.hasAttribute("data-reveal")) return;
         const r = n.getBoundingClientRect();
-        if (r.top < h * 0.94 && r.bottom > 0) show(n);
+        if (r.top < h * 0.8 && r.bottom > 0) show(n);
         else pending++;
       });
       if (!pending) this.stopReveal();
@@ -381,7 +381,7 @@ class Component extends DCLogic {
         const b = document.getElementById("b2b");
         if (b) {
           const r = b.getBoundingClientRect();
-          if (r.top < h * 0.94 && r.bottom > 0) this.setState({ b2bIn: true });
+          if (r.top < h * 0.8 && r.bottom > 0) this.setState({ b2bIn: true });
         }
       }
     };
